@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{7D2F9CF1-3B1B-4324-8559-C8BF541D5ADF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crude.FunctionalTesting", "src\Crude.FunctionalTesting\Crude.FunctionalTesting.csproj", "{1AB14798-8D72-4231-9A9B-F186195A74F5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{590654EE-C0C4-4313-B438-FD5329AC301B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{B6149463-6F6F-4D9B-B139-CE962B7E4E27}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crude.FunctionalTestingTests", "tests\Crude.FunctionalTestingTests\Crude.FunctionalTestingTests.csproj", "{71C99B68-1C9C-4C34-8BEC-FCF4AEE37BDB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1AB14798-8D72-4231-9A9B-F186195A74F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AB14798-8D72-4231-9A9B-F186195A74F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AB14798-8D72-4231-9A9B-F186195A74F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AB14798-8D72-4231-9A9B-F186195A74F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71C99B68-1C9C-4C34-8BEC-FCF4AEE37BDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71C99B68-1C9C-4C34-8BEC-FCF4AEE37BDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71C99B68-1C9C-4C34-8BEC-FCF4AEE37BDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71C99B68-1C9C-4C34-8BEC-FCF4AEE37BDB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1AB14798-8D72-4231-9A9B-F186195A74F5} = {7D2F9CF1-3B1B-4324-8559-C8BF541D5ADF}
+		{71C99B68-1C9C-4C34-8BEC-FCF4AEE37BDB} = {590654EE-C0C4-4313-B438-FD5329AC301B}
+	EndGlobalSection
+EndGlobal

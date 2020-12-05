@@ -1,7 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>netstandard2.1</TargetFramework>
+        <TargetFramework>net5.0</TargetFramework>
+        <LangVersion>default</LangVersion>
     </PropertyGroup>
 
+    <ItemGroup>
+        <PackageReference Include="Ductus.FluentDocker" Version="2.7.3" />
+        <PackageReference Include="MbDotNet" Version="4.3.3" />
+        <PackageReference Include="Npgsql" Version="5.0.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="5.0.0" />
+    </ItemGroup>
+    
 </Project>

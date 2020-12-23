@@ -34,7 +34,7 @@ namespace Crude.FunctionalTesting.Dependencies.Postgres
 
         public async Task<IDependency> AfterDependencyStart(CancellationToken cancellationToken)
         {
-            var connString = _context.GetConnectionString;
+            var connString = _context.ConnectionString;
 
             await using var connection = new NpgsqlConnection(connString);
             await connection.OpenAsync(cancellationToken);
@@ -43,7 +43,7 @@ namespace Crude.FunctionalTesting.Dependencies.Postgres
             if (tablesNames.Any()) 
                 await TruncateTables(connection, tablesNames, cancellationToken);
 
-            return new PostgresDependency();
+            return new PostgresDependency(_context);
         }
 
         private static async Task<IEnumerable<string>> GetAllTablesName(NpgsqlConnection connection,

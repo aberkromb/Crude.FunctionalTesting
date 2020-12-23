@@ -32,7 +32,7 @@ namespace Crude.FunctionalTesting.Dependencies.Postgres
         /// <summary>
         ///     Отдает строку подключения для postgres
         /// </summary>
-        public string GetConnectionString =>
+        public string ConnectionString =>
             $"Host={GetHost()}; Port={_config.ExposePort}; Database={_config.Database}; Username={_config.UserName}; Password={_config.Password}";
 
         private string GetHost() =>

@@ -50,11 +50,18 @@ namespace Sandbox.Controllers
                 .ToArray();
         }
 
-        [HttpGet, Route("postgres")]
+        [HttpPost, Route("postgres")]
         public async Task<string> InsertToPostgres([FromQuery] string toInsert ,CancellationToken cancellationToken)
         {
-            await _dataAccess.Add(new Strings {String = toInsert}, cancellationToken);
-            var value = (await _dataAccess.Get(cancellationToken)).String;
+            var inserted = await _dataAccess.Add(new Strings {String = toInsert}, cancellationToken);
+            var value = (await _dataAccess.Get(inserted.Id, cancellationToken)).String;
+            return value;
+        }
+        
+        [HttpGet, Route("postgres")]
+        public async Task<string> GetFromPostgres([FromQuery] int id ,CancellationToken cancellationToken)
+        {
+            var value = (await _dataAccess.Get(id, cancellationToken)).String;
             return value;
         }
 

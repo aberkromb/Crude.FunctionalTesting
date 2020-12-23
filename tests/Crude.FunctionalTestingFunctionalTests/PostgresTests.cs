@@ -14,7 +14,8 @@ namespace Crude.FunctionalTestingFunctionalTests
 {
     public class PostgresTests : IClassFixture<WebApplicationFactoryBuilder<Startup>>
     {
-        private readonly WebApplicationFactory<Startup> _testServer;
+        private readonly WebApplicationFactoryBuilder<Startup> _testServer;
+        private PostgresDependency Postgres => _testServer.DependencyManager.GetDependency<PostgresDependency>();
 
         public PostgresTests(WebApplicationFactoryBuilder<Startup> factory)
         {
@@ -27,21 +28,38 @@ namespace Crude.FunctionalTestingFunctionalTests
                             {
                                 var postgresContext = (PostgresRunningDependencyContext) context;
                                 context.Services.PostConfigure<PostgresOptions>(options =>
-                                    options.ConnectionString = postgresContext.GetConnectionString);
+                                    options.ConnectionString = postgresContext.ConnectionString);
                             })));
         }
-
 
         [Fact]
         public async Task InsertToPostgres_Return_ExpectedValue()
         {
             // arrange
-            var client = _testServer.CreateClient();
+            var httpClient = _testServer.CreateClient();
             var insertData = Guid.NewGuid().ToString();
-            var expected = insertData;
 
             // act 
-            var response = await client.GetAsync($"apitest/postgres?toInsert={insertData}");
+            var response = await httpClient.PostAsync($"apitest/postgres?toInsert={insertData}", null);
+            var result = await response.Content.ReadAsStringAsync();
+            var expected = (await Postgres.ExecuteFirst("SELECT * FROM strings")).String;
+
+            // assert
+            result.Should().BeEquivalentTo(expected);
+        }
+
+
+        [Fact]
+        public async Task GetById_Return_ExpectedValue()
+        {
+            // arrange
+            var httpClient = _testServer.CreateClient();
+            var insertData = Guid.NewGuid().ToString();
+            var expected = insertData;
+            await Postgres.Execute($"INSERT INTO strings (\"Id\", \"String\") values (10, '{insertData}')");
+                
+            // act 
+            var response = await httpClient.GetAsync("apitest/postgres?id=10");
             var result = await response.Content.ReadAsStringAsync();
 
             // assert

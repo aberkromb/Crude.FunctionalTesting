@@ -32,7 +32,7 @@ namespace Crude.FunctionalTestingFunctionalTests
                             })));
         }
 
-        [Fact]
+        [Fact(Skip = "")]
         public async Task InsertToPostgres_Return_ExpectedValue()
         {
             // arrange
@@ -49,7 +49,7 @@ namespace Crude.FunctionalTestingFunctionalTests
         }
 
 
-        [Fact]
+        [Fact(Skip = "")]
         public async Task GetById_Return_ExpectedValue()
         {
             // arrange

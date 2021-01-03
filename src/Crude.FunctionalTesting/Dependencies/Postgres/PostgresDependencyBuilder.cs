@@ -56,7 +56,7 @@ namespace Crude.FunctionalTesting.Dependencies.Postgres
                         })
                         .ToArray())
                 .ExposePort((int) _config.ExposePort, (int) _config.ExposePort)
-                .WaitForPort($"{_config.ExposePort.ToString()}/tcp", 30000 /*30s*/)
+                // .WaitForPort($"{_config.ExposePort.ToString()}/tcp", 30000 /*30s*/)
                 .WithName(_config.DependencyName);
 
             if (_config.ReuseDependencyIfExist)

@@ -1,13 +1,8 @@
-FROM ft-base:2 AS build
+FROM $base-image-name AS build
 WORKDIR /app
-
-# RUN dockerd
 
 COPY . ./
 RUN dotnet restore
-
-# RUN dotnet test -c Release
-#RUN dotnet publish -c Release -o /app/out
 
 ENTRYPOINT ["dotnet","test", "-c", "Release"]
 

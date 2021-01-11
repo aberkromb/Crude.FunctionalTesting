@@ -1,3 +1,4 @@
+using System;
 using Ductus.FluentDocker.Services;
 using Ductus.FluentDocker.Services.Extensions;
 using Microsoft.Extensions.Configuration;
@@ -13,9 +14,9 @@ namespace Crude.FunctionalTesting.Dependencies.Postgres
         private readonly IServiceCollection _services;
 
         public PostgresRunningDependencyContext(PostgresDependencyConfig config,
-                                                IContainerService container,
-                                                IConfiguration configuration,
-                                                IServiceCollection services)
+            IContainerService container,
+            IConfiguration configuration,
+            IServiceCollection services)
         {
             _config = config;
             _container = container;
@@ -35,7 +36,9 @@ namespace Crude.FunctionalTesting.Dependencies.Postgres
         public string ConnectionString =>
             $"Host={GetHost()}; Port={_config.ExposePort}; Database={_config.Database}; Username={_config.UserName}; Password={_config.Password}";
 
-        private string GetHost() =>
-            _container.ToHostExposedEndpoint($"{_config.ExposePort}/tcp").Address.ToString();
+        private string GetHost() => 
+            Environment.GetEnvironmentVariable("DOCKER_CUSTOM_HOST_IP") is null
+            ? _container.ToHostExposedEndpoint($"{_config.ExposePort}/tcp").Address.ToString()
+            : Environment.GetEnvironmentVariable("DOCKER_CUSTOM_HOST_IP");
     }
 }

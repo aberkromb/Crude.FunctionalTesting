@@ -4,7 +4,6 @@ using Crude.FunctionalTesting;
 using Crude.FunctionalTesting.Dependencies.Postgres;
 using Crude.FunctionalTesting.TestServer;
 using FluentAssertions;
-using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.DependencyInjection;
 using Sandbox;
 using Sandbox.DataAccess;
@@ -32,7 +31,7 @@ namespace Crude.FunctionalTestingFunctionalTests
                             })));
         }
 
-        [Fact(Skip = "")]
+        [Fact]
         public async Task InsertToPostgres_Return_ExpectedValue()
         {
             // arrange
@@ -49,7 +48,7 @@ namespace Crude.FunctionalTestingFunctionalTests
         }
 
 
-        [Fact(Skip = "")]
+        [Fact]
         public async Task GetById_Return_ExpectedValue()
         {
             // arrange

@@ -17,8 +17,6 @@ namespace Sandbox
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                })
-                .ConfigureAppConfiguration((context, builder) => builder.SetBasePath(Directory.GetCurrentDirectory()))
-                .UseContentRoot(Directory.GetCurrentDirectory());
+                });
     }
 }

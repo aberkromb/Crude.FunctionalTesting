@@ -1,7 +1,7 @@
-FROM $base-image-name AS build
+FROM ft-net5-docker:1.0 AS build
 WORKDIR /app
 
-COPY . ./
+COPY ./. ./.   
 RUN dotnet restore
 
 ENTRYPOINT ["dotnet","test", "-c", "Release"]

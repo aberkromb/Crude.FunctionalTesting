@@ -9,7 +9,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{B6149463-6F6F-4D9B-B139-CE962B7E4E27}"
 ProjectSection(SolutionItems) = preProject
 	samples\Dockerfile-net5-docker = samples\Dockerfile-net5-docker
-	samples\BuildSampleImages.ps1 = samples\BuildSampleImages.ps1
 EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crude.FunctionalTestingFunctionalTests", "tests\Crude.FunctionalTestingFunctionalTests\Crude.FunctionalTestingFunctionalTests.csproj", "{48670130-A99C-4BE3-9F6C-704552BEE158}"

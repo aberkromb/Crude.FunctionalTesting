@@ -11,7 +11,7 @@ ProjectSection(SolutionItems) = preProject
 	samples\Dockerfile-net5-docker = samples\Dockerfile-net5-docker
 EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crude.FunctionalTestingFunctionalTests", "tests\Crude.FunctionalTestingFunctionalTests\Crude.FunctionalTestingFunctionalTests.csproj", "{48670130-A99C-4BE3-9F6C-704552BEE158}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunctionalTests", "tests\FunctionalTests\FunctionalTests.csproj", "{48670130-A99C-4BE3-9F6C-704552BEE158}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sandbox", "sandbox", "{3C50F7F9-2D07-4317-A1CD-E741B9A2DBB6}"
 EndProject

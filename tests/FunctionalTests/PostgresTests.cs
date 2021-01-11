@@ -9,7 +9,7 @@ using Sandbox;
 using Sandbox.DataAccess;
 using Xunit;
 
-namespace Crude.FunctionalTestingFunctionalTests
+namespace FunctionalTests
 {
     public class PostgresTests : IClassFixture<WebApplicationFactoryBuilder<Startup>>
     {

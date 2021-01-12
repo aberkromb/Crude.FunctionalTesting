@@ -1,7 +1,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Crude.FunctionalTesting.Dependencies
+namespace Crude.FunctionalTesting.Core.Dependencies
 {
     public interface IRunningDependencyContext
     {
@@ -9,7 +9,6 @@ namespace Crude.FunctionalTesting.Dependencies
 
         public IServiceCollection Services { get; }
         
-
         public IDependencyConfig DependencyConfig { get; }
     }
 }

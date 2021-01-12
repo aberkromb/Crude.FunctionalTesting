@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Crude.FunctionalTesting.Dependencies;
-using Crude.FunctionalTesting.Dependencies.Common;
+using Crude.FunctionalTesting.Core.Dependencies;
 
-namespace Crude.FunctionalTesting
+namespace Crude.FunctionalTesting.Core
 {
     public class DependenciesBuilder : IDisposable
     {
@@ -17,7 +16,7 @@ namespace Crude.FunctionalTesting
             _runningDependencies = Enumerable.Empty<IRunningDependency>();
         }
 
-        internal RunningDependencies Start()
+        public RunningDependencies Start()
         {
             return new RunningDependencies(_dependencyBuilders.Select(builder => builder.Start()).ToList());
         }
@@ -31,11 +30,11 @@ namespace Crude.FunctionalTesting
 
         public void Dispose()
         {
-            var c = _runningDependencies;
+            var captureRunningDependencies = _runningDependencies;
             _runningDependencies = null;
             try
             {
-                foreach (var dependency in _runningDependencies)
+                foreach (var dependency in captureRunningDependencies)
                     dependency.Dispose();
             }
             catch

@@ -1,4 +1,4 @@
-namespace Crude.FunctionalTesting.Dependencies
+namespace Crude.FunctionalTesting.Core.Dependencies
 {
     /// <summary>
     ///     Маркерный интерфейс для работы с запущенными зависимостями

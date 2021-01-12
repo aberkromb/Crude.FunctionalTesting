@@ -1,6 +1,6 @@
 using System;
 using System.Linq;
-using Crude.FunctionalTesting.Dependencies;
+using Crude.FunctionalTesting.Core.Dependencies;
 using Ductus.FluentDocker.Builders;
 using Ductus.FluentDocker.Services;
 

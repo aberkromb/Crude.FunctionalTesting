@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Crude.FunctionalTesting.Dependencies;
+using Crude.FunctionalTesting.Core.Dependencies;
 using Dapper;
 using Npgsql;
 

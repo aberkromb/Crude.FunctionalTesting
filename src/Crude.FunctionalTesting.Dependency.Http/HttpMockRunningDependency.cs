@@ -1,7 +1,7 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Crude.FunctionalTesting.Dependencies;
+using Crude.FunctionalTesting.Core.Dependencies;
 using Ductus.FluentDocker.Services;
 using MbDotNet;
 using Microsoft.Extensions.Configuration;

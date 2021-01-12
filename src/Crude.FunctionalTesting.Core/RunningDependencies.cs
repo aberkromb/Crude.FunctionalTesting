@@ -2,12 +2,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Crude.FunctionalTesting.Core.Dependencies;
+using Crude.FunctionalTesting.Core.Dependencies.Implementations;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Crude.FunctionalTesting.Dependencies.Common
+namespace Crude.FunctionalTesting.Core
 {
-    internal class RunningDependencies
+    public class RunningDependencies
     {
         private readonly IEnumerable<IRunningDependency> _runningDependencies;
 
@@ -27,8 +29,7 @@ namespace Crude.FunctionalTesting.Dependencies.Common
             return new DependencyManager(dependencies);
         }
 
-        private static IEnumerable<IDependency> AfterDependenciesStart(
-            IEnumerable<IRunningDependency> runningDependencies)
+        private static IEnumerable<IDependency> AfterDependenciesStart(IEnumerable<IRunningDependency> runningDependencies)
         {
             return Task.WhenAll(runningDependencies.Select(dependency =>
                 dependency.AfterDependencyStart(CancellationToken.None))).GetAwaiter().GetResult();

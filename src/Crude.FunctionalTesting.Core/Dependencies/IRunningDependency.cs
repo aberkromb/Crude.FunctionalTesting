@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Crude.FunctionalTesting.Dependencies
+namespace Crude.FunctionalTesting.Core.Dependencies
 {
     public interface IRunningDependency: IDisposable
     {

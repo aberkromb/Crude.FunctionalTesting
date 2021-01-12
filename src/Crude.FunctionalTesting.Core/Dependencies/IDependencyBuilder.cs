@@ -1,6 +1,6 @@
 using System;
 
-namespace Crude.FunctionalTesting.Dependencies
+namespace Crude.FunctionalTesting.Core.Dependencies
 {
     /// <summary>
     ///     Интерфейс для создания зависимостей

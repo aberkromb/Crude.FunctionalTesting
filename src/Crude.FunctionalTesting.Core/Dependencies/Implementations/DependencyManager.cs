@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Crude.FunctionalTesting.Dependencies.Common
+namespace Crude.FunctionalTesting.Core.Dependencies.Implementations
 {
     internal class DependencyManager : IDependencyManager
     {

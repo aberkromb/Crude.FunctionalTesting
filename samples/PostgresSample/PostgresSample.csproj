@@ -23,6 +23,7 @@
     <ItemGroup>
         <ProjectReference Include="..\..\sandbox\Sandbox\Sandbox.csproj" />
         <ProjectReference Include="..\..\src\Crude.FunctionalTesting.Dependency.Postgres\Crude.FunctionalTesting.Dependency.Postgres.csproj" />
+        <ProjectReference Include="..\..\src\Crude.FunctionalTesting.TestServer\Crude.FunctionalTesting.TestServer.csproj" />
     </ItemGroup>
 
     <ItemGroup>

@@ -3,7 +3,7 @@ using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
-using Crude.FunctionalTesting.Dependencies;
+using Crude.FunctionalTesting.Core.Dependencies;
 using Ductus.FluentDocker.Services;
 using Ductus.FluentDocker.Services.Extensions;
 using Microsoft.Extensions.Configuration;

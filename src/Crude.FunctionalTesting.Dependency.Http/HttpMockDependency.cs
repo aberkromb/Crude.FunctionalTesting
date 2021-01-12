@@ -1,5 +1,5 @@
 using System.Net;
-using Crude.FunctionalTesting.Dependencies;
+using Crude.FunctionalTesting.Core.Dependencies;
 using MbDotNet;
 using MbDotNet.Enums;
 using MbDotNet.Models.Stubs;

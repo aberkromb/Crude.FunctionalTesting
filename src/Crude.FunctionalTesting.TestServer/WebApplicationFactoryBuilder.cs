@@ -1,5 +1,5 @@
-using Crude.FunctionalTesting.Dependencies;
-using Crude.FunctionalTesting.Dependencies.Common;
+using Crude.FunctionalTesting.Core;
+using Crude.FunctionalTesting.Core.Dependencies;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.Hosting;
@@ -11,7 +11,6 @@ namespace Crude.FunctionalTesting.TestServer
     {
         private DependenciesBuilder _dependenciesBuilder;
         private RunningDependencies _runningDependencies;
-        private IDependencyManager _dependencyManager;
 
         public WebApplicationFactoryBuilder<TStartup> AddDependenciesBuilder(
             DependenciesBuilder dependenciesBuilder)
@@ -20,11 +19,10 @@ namespace Crude.FunctionalTesting.TestServer
             return this;
         }
 
-        public IDependencyManager DependencyManager => _dependencyManager;
+        public IDependencyManager DependencyManager { get; private set; }
 
         protected override IWebHostBuilder CreateWebHostBuilder()
         {
-            
             return base.CreateWebHostBuilder();
         }
 
@@ -39,7 +37,7 @@ namespace Crude.FunctionalTesting.TestServer
         {
             builder.ConfigureServices((context, services) =>
             {
-                _dependencyManager = _runningDependencies.ConfigureServices(context.Configuration, services);
+                DependencyManager = _runningDependencies.ConfigureServices(context.Configuration, services);
             });
         }
 

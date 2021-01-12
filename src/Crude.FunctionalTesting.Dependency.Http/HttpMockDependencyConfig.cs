@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Crude.FunctionalTesting.Dependencies;
+using Crude.FunctionalTesting.Core.Dependencies;
 
 namespace Crude.FunctionalTesting.Dependency.Http
 {

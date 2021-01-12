@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Crude.FunctionalTesting.Dependencies
+namespace Crude.FunctionalTesting.Core.Dependencies
 {
     /// <summary>
     ///     Менеджер созданных зависимостей 

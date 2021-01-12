@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Crude.FunctionalTesting.Dependencies;
+using Crude.FunctionalTesting.Core.Dependencies;
 using Ductus.FluentDocker.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -35,9 +35,9 @@ namespace Crude.FunctionalTesting.Dependency.Postgres
 
         public async Task<IDependency> AfterDependencyStart(CancellationToken cancellationToken)
         {
-            var connString = _context.ConnectionString;
+            var connectionString = _context.ConnectionString;
 
-            await using var connection = new NpgsqlConnection(connString);
+            await using var connection = new NpgsqlConnection(connectionString);
             await connection.OpenAsync(cancellationToken);
             var tablesNames = await GetAllTablesName(connection, cancellationToken);
 
@@ -47,8 +47,7 @@ namespace Crude.FunctionalTesting.Dependency.Postgres
             return new PostgresDependency(_context);
         }
 
-        private static async Task<IEnumerable<string>> GetAllTablesName(NpgsqlConnection connection,
-                                                                 CancellationToken cancellationToken)
+        private static async Task<IEnumerable<string>> GetAllTablesName(NpgsqlConnection connection, CancellationToken cancellationToken)
         {
             var result = new List<string>();
 
@@ -88,8 +87,7 @@ namespace Crude.FunctionalTesting.Dependency.Postgres
             await cmd.ExecuteNonQueryAsync(cancellationToken);
         }
 
-        private static NpgsqlCommand GetTruncateTablesCommand(IEnumerable<string> tablesNames,
-                                                              NpgsqlConnection connection)
+        private static NpgsqlCommand GetTruncateTablesCommand(IEnumerable<string> tablesNames, NpgsqlConnection connection)
         {
             return new NpgsqlCommand($"truncate {string.Join(',', tablesNames)} cascade", connection);
         }

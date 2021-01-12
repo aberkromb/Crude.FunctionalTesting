@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using Crude.FunctionalTesting;
-using Crude.FunctionalTesting.Dependencies;
+using Crude.FunctionalTesting.Core;
+using Crude.FunctionalTesting.Core.Dependencies;
 using Crude.FunctionalTesting.Dependency.Http;
 using Crude.FunctionalTesting.TestServer;
 using FluentAssertions;

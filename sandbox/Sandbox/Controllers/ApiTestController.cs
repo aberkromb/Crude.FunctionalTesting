@@ -40,6 +40,12 @@ namespace Sandbox.Controllers
             return value;
         }
 
+        [HttpPost, Route("kafka")]
+        public async Task PublishToKafka([FromQuery] string toPublish)
+        {
+            
+        }
+
         [HttpGet, Route("google")]
         public async Task<object> PingGoogle(CancellationToken cancellationToken)
         {

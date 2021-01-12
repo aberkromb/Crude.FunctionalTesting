@@ -1,0 +1,77 @@
+version: '3.6'
+
+networks: 
+  kafka-network:
+
+services:
+  zookeeper:
+    image: confluentinc/cp-zookeeper:5.3.1
+    ports:
+      - ${DEV_ZOOKEEPER_PORT:-2181}:2181
+    volumes:
+      - demo-zookeeperdata:/var/lib/zookeeper/data
+      - demo-zookeeperlog:/var/lib/zookeeper/log
+    environment:
+      - ZOOKEEPER_CLIENT_PORT=2181
+      - ZOOKEEPER_TICK_TIME=2000
+      - ZOOKEEPER_SYNC_LIMIT=2
+    restart: always
+    networks: 
+      - kafka-network
+
+  kafka:
+    image: confluentinc/cp-kafka:5.3.1
+    ports:
+      - ${DEV_KAFKA_PORT:-9092}:9092
+    volumes:
+      - demo-kafkadata:/var/lib/kafka/data
+    environment:
+      - KAFKA_BROKER_ID=1
+      - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
+      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://kafka:29092,PLAINTEXT_HOST://localhost:9092
+      - KAFKA_LISTENER_SECURITY_PROTOCOL_MAP=PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      - KAFKA_INTER_BROKER_LISTENER_NAME=PLAINTEXT
+      - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1
+      - KAFKA_AUTO_CREATE_TOPICS_ENABLE=true
+      - KAFKA_HEAP_OPTS=-Xmx512M
+    restart: always
+    depends_on:
+      - zookeeper
+    networks: 
+      - kafka-network
+
+  schema-registry:
+    image: confluentinc/cp-schema-registry:5.3.1
+    ports:
+      - ${DEV_SCHEMA_REGISTRY_PORT:-8081}:8081
+    environment:
+      - SCHEMA_REGISTRY_HOST_NAME=schema-registry
+      - SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL=zookeeper:2181
+    depends_on:
+      - zookeeper
+      - kafka
+    restart: always  
+    networks: 
+      - kafka-network
+
+  kafdrop:
+    image: obsidiandynamics/kafdrop:latest
+    ports:
+      - ${DEV_KAFDROP_PORT:-9000}:9000
+    environment:
+      - KAFKA_BROKERCONNECT=kafka:29092
+      - JVM_OPTS=-Xms32M -Xmx64M
+    depends_on:
+      - zookeeper
+      - kafka
+      - schema-registry
+    networks: 
+      - kafka-network
+
+volumes:
+  demo-kafkadata:
+    driver: local
+  demo-zookeeperdata:
+    driver: local
+  demo-zookeeperlog:
+    driver: local    

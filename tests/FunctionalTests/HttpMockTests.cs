@@ -9,7 +9,7 @@
 // using Sandbox;
 // using Xunit;
 //
-// namespace Crude.FunctionalTestingFunctionalTests
+// namespace FunctionalTests
 // {
 //     public class HttpMockTests : IClassFixture<WebApplicationFactoryBuilder<Startup>>
 //     {

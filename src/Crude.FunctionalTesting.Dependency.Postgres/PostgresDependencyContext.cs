@@ -1,10 +1,11 @@
 using System;
+using Crude.FunctionalTesting.Dependencies;
 using Ductus.FluentDocker.Services;
 using Ductus.FluentDocker.Services.Extensions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Crude.FunctionalTesting.Dependencies.Postgres
+namespace Crude.FunctionalTesting.Dependency.Postgres
 {
     public class PostgresRunningDependencyContext : IRunningDependencyContext
     {

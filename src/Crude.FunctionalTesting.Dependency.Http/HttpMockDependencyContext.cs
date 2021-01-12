@@ -3,13 +3,14 @@ using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
+using Crude.FunctionalTesting.Dependencies;
 using Ductus.FluentDocker.Services;
 using Ductus.FluentDocker.Services.Extensions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Http;
 
-namespace Crude.FunctionalTesting.Dependencies.Http
+namespace Crude.FunctionalTesting.Dependency.Http
 {
     public class HttpMockDependencyContext : IRunningDependencyContext
     {

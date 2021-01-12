@@ -1,9 +1,10 @@
 using System.Net;
+using Crude.FunctionalTesting.Dependencies;
 using MbDotNet;
 using MbDotNet.Enums;
 using MbDotNet.Models.Stubs;
 
-namespace Crude.FunctionalTesting.Dependencies.Http
+namespace Crude.FunctionalTesting.Dependency.Http
 {
     public class HttpMockDependency : IDependency
     {

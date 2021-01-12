@@ -1,6 +1,7 @@
 using System.Collections.Generic;
+using Crude.FunctionalTesting.Dependencies;
 
-namespace Crude.FunctionalTesting.Dependencies.Http
+namespace Crude.FunctionalTesting.Dependency.Http
 {
     /// <summary>
     ///     Кофиг зависимости для http моков

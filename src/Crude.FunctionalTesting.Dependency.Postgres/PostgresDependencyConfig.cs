@@ -1,6 +1,7 @@
 using System.Collections.Generic;
+using Crude.FunctionalTesting.Dependencies;
 
-namespace Crude.FunctionalTesting.Dependencies.Postgres
+namespace Crude.FunctionalTesting.Dependency.Postgres
 {
     /// <summary>
     ///     Конфигурирование зависимости postgres

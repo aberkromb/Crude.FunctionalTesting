@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Crude.FunctionalTesting.Dependencies;
 using Ductus.FluentDocker.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Npgsql;
 
-namespace Crude.FunctionalTesting.Dependencies.Postgres
+namespace Crude.FunctionalTesting.Dependency.Postgres
 {
     internal class PostgresRunningDependency : IRunningDependency
     {

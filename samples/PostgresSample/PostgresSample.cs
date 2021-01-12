@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using Crude.FunctionalTesting;
-using Crude.FunctionalTesting.Dependencies.Postgres;
+using Crude.FunctionalTesting.Dependency.Postgres;
 using Crude.FunctionalTesting.TestServer;
 using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
@@ -9,7 +9,7 @@ using Sandbox;
 using Sandbox.DataAccess;
 using Xunit;
 
-namespace Crude.FunctionalTestingFunctionalTests
+namespace PostgresSample
 {
     public class PostgresTests : IClassFixture<WebApplicationFactoryBuilder<Startup>>
     {
@@ -55,10 +55,11 @@ namespace Crude.FunctionalTestingFunctionalTests
             var httpClient = _testServer.CreateClient();
             var insertData = Guid.NewGuid().ToString();
             var expected = insertData;
-            await Postgres.Execute($"INSERT INTO strings (\"Id\", \"String\") values (10, '{insertData}')");
+            var insertId = new Random().Next(1_000_000, int.MaxValue);
+            await Postgres.Execute($"INSERT INTO strings (\"Id\", \"String\") values ({insertId}, '{insertData}')");
                 
             // act 
-            var response = await httpClient.GetAsync("apitest/postgres?id=10");
+            var response = await httpClient.GetAsync($"apitest/postgres?id={insertId}");
             var result = await response.Content.ReadAsStringAsync();
 
             // assert

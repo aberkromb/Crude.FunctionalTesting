@@ -1,12 +1,13 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Crude.FunctionalTesting.Dependencies;
 using Ductus.FluentDocker.Services;
 using MbDotNet;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Crude.FunctionalTesting.Dependencies.Http
+namespace Crude.FunctionalTesting.Dependency.Http
 {
     public class HttpMockRunningDependency : IRunningDependency
     {

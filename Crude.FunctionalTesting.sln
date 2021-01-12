@@ -2,22 +2,42 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{7D2F9CF1-3B1B-4324-8559-C8BF541D5ADF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crude.FunctionalTesting", "src\Crude.FunctionalTesting\Crude.FunctionalTesting.csproj", "{1AB14798-8D72-4231-9A9B-F186195A74F5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crude.FunctionalTesting.Core", "src\Crude.FunctionalTesting.Core\Crude.FunctionalTesting.Core.csproj", "{1AB14798-8D72-4231-9A9B-F186195A74F5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{590654EE-C0C4-4313-B438-FD5329AC301B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{B6149463-6F6F-4D9B-B139-CE962B7E4E27}"
-ProjectSection(SolutionItems) = preProject
-	samples\Dockerfile-net5-docker = samples\Dockerfile-net5-docker
-EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunctionalTests", "tests\FunctionalTests\FunctionalTests.csproj", "{48670130-A99C-4BE3-9F6C-704552BEE158}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sandbox", "sandbox", "{3C50F7F9-2D07-4317-A1CD-E741B9A2DBB6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandbox", "sandbox\Sandbox\Sandbox.csproj", "{74C022A8-B1C5-4333-880C-9F43629D143E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unit", "tests\Unit\Unit.csproj", "{CED14230-1407-477B-975A-E6650212661A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crude.FunctionalTesting.Dependency.Kafka", "src\Crude.FunctionalTesting.Dependency.Kafka\Crude.FunctionalTesting.Dependency.Kafka.csproj", "{28303F20-4825-4F40-A54F-4A882F7EDE98}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crude.FunctionalTesting.Dependency.Postgres", "src\Crude.FunctionalTesting.Dependency.Postgres\Crude.FunctionalTesting.Dependency.Postgres.csproj", "{A78DE4C4-9A5D-4848-A6DE-CBFE90BFF1B3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crude.FunctionalTesting.Dependency.Http", "src\Crude.FunctionalTesting.Dependency.Http\Crude.FunctionalTesting.Dependency.Http.csproj", "{3244EC6F-F6DD-4975-BF8B-44AEAABFDD72}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ScriptsForCI", "ScriptsForCI", "{68C12EFF-D346-4D45-9DB4-8A0CA50070E7}"
+ProjectSection(SolutionItems) = preProject
+	samples\BuildSampleImages.ps1 = samples\BuildSampleImages.ps1
+	samples\docker-entrypoint.sh = samples\docker-entrypoint.sh
+	samples\Dockerfile-net5-docker = samples\Dockerfile-net5-docker
+	samples\Dockerfile-test = samples\Dockerfile-test
+	samples\modprobe.sh = samples\modprobe.sh
+EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PostgresSample", "PostgresSample", "{49883CAE-F872-46B9-9401-3B92C27074D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PostgresSample", "samples\PostgresSample\PostgresSample.csproj", "{B6049532-9DE3-4CF6-9D5A-B093C29B9854}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HttpSample", "HttpSample", "{59EA1EB7-E990-4980-BC63-94E08B9ED74E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HttpSample", "samples\HttpSample\HttpSample.csproj", "{03B2F352-B763-4EA8-B48D-42E11D98DE71}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crude.FunctionalTesting.TestServer", "src\Crude.FunctionalTesting.TestServer\Crude.FunctionalTesting.TestServer.csproj", "{20CA7AED-E11F-46CE-A607-73F9A45287AB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +49,6 @@ Global
 		{1AB14798-8D72-4231-9A9B-F186195A74F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1AB14798-8D72-4231-9A9B-F186195A74F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1AB14798-8D72-4231-9A9B-F186195A74F5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{48670130-A99C-4BE3-9F6C-704552BEE158}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{48670130-A99C-4BE3-9F6C-704552BEE158}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{48670130-A99C-4BE3-9F6C-704552BEE158}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{48670130-A99C-4BE3-9F6C-704552BEE158}.Release|Any CPU.Build.0 = Release|Any CPU
 		{74C022A8-B1C5-4333-880C-9F43629D143E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{74C022A8-B1C5-4333-880C-9F43629D143E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{74C022A8-B1C5-4333-880C-9F43629D143E}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -41,11 +57,43 @@ Global
 		{CED14230-1407-477B-975A-E6650212661A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CED14230-1407-477B-975A-E6650212661A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CED14230-1407-477B-975A-E6650212661A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28303F20-4825-4F40-A54F-4A882F7EDE98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28303F20-4825-4F40-A54F-4A882F7EDE98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28303F20-4825-4F40-A54F-4A882F7EDE98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28303F20-4825-4F40-A54F-4A882F7EDE98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A78DE4C4-9A5D-4848-A6DE-CBFE90BFF1B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A78DE4C4-9A5D-4848-A6DE-CBFE90BFF1B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A78DE4C4-9A5D-4848-A6DE-CBFE90BFF1B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A78DE4C4-9A5D-4848-A6DE-CBFE90BFF1B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3244EC6F-F6DD-4975-BF8B-44AEAABFDD72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3244EC6F-F6DD-4975-BF8B-44AEAABFDD72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3244EC6F-F6DD-4975-BF8B-44AEAABFDD72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3244EC6F-F6DD-4975-BF8B-44AEAABFDD72}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6049532-9DE3-4CF6-9D5A-B093C29B9854}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6049532-9DE3-4CF6-9D5A-B093C29B9854}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6049532-9DE3-4CF6-9D5A-B093C29B9854}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6049532-9DE3-4CF6-9D5A-B093C29B9854}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03B2F352-B763-4EA8-B48D-42E11D98DE71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03B2F352-B763-4EA8-B48D-42E11D98DE71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03B2F352-B763-4EA8-B48D-42E11D98DE71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03B2F352-B763-4EA8-B48D-42E11D98DE71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20CA7AED-E11F-46CE-A607-73F9A45287AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20CA7AED-E11F-46CE-A607-73F9A45287AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20CA7AED-E11F-46CE-A607-73F9A45287AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20CA7AED-E11F-46CE-A607-73F9A45287AB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{1AB14798-8D72-4231-9A9B-F186195A74F5} = {7D2F9CF1-3B1B-4324-8559-C8BF541D5ADF}
-		{48670130-A99C-4BE3-9F6C-704552BEE158} = {590654EE-C0C4-4313-B438-FD5329AC301B}
 		{74C022A8-B1C5-4333-880C-9F43629D143E} = {3C50F7F9-2D07-4317-A1CD-E741B9A2DBB6}
 		{CED14230-1407-477B-975A-E6650212661A} = {590654EE-C0C4-4313-B438-FD5329AC301B}
+		{28303F20-4825-4F40-A54F-4A882F7EDE98} = {7D2F9CF1-3B1B-4324-8559-C8BF541D5ADF}
+		{A78DE4C4-9A5D-4848-A6DE-CBFE90BFF1B3} = {7D2F9CF1-3B1B-4324-8559-C8BF541D5ADF}
+		{3244EC6F-F6DD-4975-BF8B-44AEAABFDD72} = {7D2F9CF1-3B1B-4324-8559-C8BF541D5ADF}
+		{68C12EFF-D346-4D45-9DB4-8A0CA50070E7} = {B6149463-6F6F-4D9B-B139-CE962B7E4E27}
+		{49883CAE-F872-46B9-9401-3B92C27074D3} = {B6149463-6F6F-4D9B-B139-CE962B7E4E27}
+		{B6049532-9DE3-4CF6-9D5A-B093C29B9854} = {49883CAE-F872-46B9-9401-3B92C27074D3}
+		{59EA1EB7-E990-4980-BC63-94E08B9ED74E} = {B6149463-6F6F-4D9B-B139-CE962B7E4E27}
+		{03B2F352-B763-4EA8-B48D-42E11D98DE71} = {59EA1EB7-E990-4980-BC63-94E08B9ED74E}
+		{20CA7AED-E11F-46CE-A607-73F9A45287AB} = {7D2F9CF1-3B1B-4324-8559-C8BF541D5ADF}
 	EndGlobalSection
 EndGlobal

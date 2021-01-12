@@ -12,12 +12,17 @@ echo "Docker host получен : " $dockerHost
 
 echo "-----------------------------------"
 echo "Собираем базовый образ с net 5 alpine и docker."
-docker build --add-host=docker:$dockerHost -t $base_image_name -f samples\Dockerfile-net5-docker .
+docker build --add-host=docker:$dockerHost `
+             -t $base_image_name `
+             -f samples\ScriptsForCI\Dockerfile-net5-docker .
 echo "Базовый образ собран."
 
 echo "-----------------------------------"
 echo "Собираем образ для тестов."
-docker build --build-arg base-image-name=$base_image_name --add-host=docker:$dockerHost -t $test_image_name -f samples\Dockerfile-test .
+docker build --build-arg base-image-name=$base_image_name `
+             --add-host=docker:$dockerHost `
+             -t $test_image_name `
+             -f samples\ScriptsForCI\Dockerfile-test .
 echo "Образ для тестов собран."
 
 echo "-----------------------------------"

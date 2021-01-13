@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Threading;
 using Crude.FunctionalTesting.Core.Dependencies;
 using Ductus.FluentDocker.Builders;
 using Ductus.FluentDocker.Services;
@@ -44,24 +45,24 @@ namespace Crude.FunctionalTesting.Dependency.Postgres
         private ContainerBuilder BuildContainer()
         {
             var builder = new Builder()
-                .UseContainer()
-                .UseImage(_config.Image)
-                .WithEnvironment(
-                    _config.EnvironmentVariables
-                        .Select(s => $"{s.Key}={s.Value}")
-                        .Concat(new[]
-                        {
-                            $"POSTGRES_PASSWORD={_config.Password}",
-                            $"POSTGRES_DB={_config.Database}",
-                            $"POSTGRES_USER={_config.UserName}",
-                        })
-                        .ToArray())
-                .ExposePort((int) _config.ExposePort, (int) _config.ExposePort)
-                // .WaitForPort($"{_config.ExposePort.ToString()}/tcp", 30000 /*30s*/)
-                .WithName(_config.DependencyName);
+                          .UseContainer()
+                          .UseImage(_config.Image)
+                          .WithEnvironment(_config.EnvironmentVariables
+                                                  .Select(s => $"{s.Key}={s.Value}")
+                                                  .Concat(new[]
+                                                  {
+                                                      $"POSTGRES_PASSWORD={_config.Password}",
+                                                      $"POSTGRES_DB={_config.Database}",
+                                                      $"POSTGRES_USER={_config.UserName}",
+                                                  })
+                                                  .ToArray())
+                          .ExposePort((int) _config.ExposePort, (int) _config.ExposePort)
+                          .WaitForPort($"{_config.ExposePort.ToString()}/tcp", 30000 /*30s*/, Environment.GetEnvironmentVariable("DOCKER_CUSTOM_HOST_IP") ?? "localhost")
+                          .WithName(_config.DependencyName);
 
             if (_config.ReuseDependencyIfExist)
                 builder.ReuseIfExists();
+            
             return builder;
         }
     }

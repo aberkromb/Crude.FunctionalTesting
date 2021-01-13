@@ -33,7 +33,9 @@ namespace Crude.FunctionalTesting.Dependency.Http
 
         public Task<IDependency> AfterDependencyStart(CancellationToken cancellationToken)
         {
-            var client = new MountebankClient();
+            var dependencyConfig = (HttpMockDependencyConfig) _context.DependencyConfig;
+
+            var client = new MountebankClient($"http://{_context.GetHostAndPort().host}:{dependencyConfig.ExposeUiPort}");
             client.DeleteAllImposters();
             
             return Task.FromResult<IDependency>(new HttpMockDependency(_context, client));

@@ -9,14 +9,12 @@ namespace Crude.FunctionalTesting.Dependency.Http
     public class HttpMockDependency : IDependency
     {
         private readonly HttpMockDependencyContext _context;
-        private readonly MountebankClient _mountebankClient;
-        private MountebankClient _client;
+        private readonly MountebankClient _client;
 
         public HttpMockDependency(HttpMockDependencyContext context, MountebankClient mountebankClient)
         {
             _context = context;
-            _mountebankClient = mountebankClient;
-            _client = new MountebankClient();
+            _client = mountebankClient;
         }
         
         public HttpStub AddGetMock(string path, object response)

@@ -10,10 +10,10 @@ namespace Sandbox.Controllers
     [Route("[controller]")]
     public class KafkaController : ControllerBase
     {
-        private readonly ILogger<ApiTestController> _logger;
+        private readonly ILogger<KafkaController> _logger;
         private readonly IKafkaClientService _kafkaClientService;
 
-        public KafkaController(ILogger<ApiTestController> logger, IKafkaClientService kafkaClientService)
+        public KafkaController(ILogger<KafkaController> logger, IKafkaClientService kafkaClientService)
         {
             _logger = logger;
             _kafkaClientService = kafkaClientService;

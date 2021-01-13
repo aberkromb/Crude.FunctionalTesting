@@ -14,4 +14,10 @@
       <ProjectReference Include="..\Crude.FunctionalTesting.Core\Crude.FunctionalTesting.Core.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Update="docker-compose.yml">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
 </Project>

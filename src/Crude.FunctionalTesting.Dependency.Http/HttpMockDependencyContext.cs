@@ -36,9 +36,12 @@ namespace Crude.FunctionalTesting.Dependency.Http
             _config = config;
         }
 
-        public (string host, int port) GetHostAndPort() =>
-            (_container.ToHostExposedEndpoint($"{_config.ExposeApiPort}/tcp").Address.ToString(),
-                (int) _config.ExposeApiPort);
+        public (string host, int port) GetHostAndPort() => (GetDependencyAddress(), (int) _config.ExposeApiPort);
+
+        private string GetDependencyAddress() =>
+            Environment.GetEnvironmentVariable("DOCKER_CUSTOM_HOST_IP") is null
+                ? _container.ToHostExposedEndpoint($"{_config.ExposeApiPort}/tcp").Address.ToString()
+                : Environment.GetEnvironmentVariable("DOCKER_CUSTOM_HOST_IP");
 
         public class TurnRequestToMockFilter : IHttpMessageHandlerBuilderFilter
         {

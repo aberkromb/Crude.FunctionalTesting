@@ -46,8 +46,7 @@ namespace Crude.FunctionalTesting.Dependency.Http
                         .ToArray())
                 .ExposePort((int) _config.ExposeApiPort, (int) _config.ExposeApiPort)
                 .ExposePort((int) _config.ExposeUiPort, (int) _config.ExposeUiPort)
-                // .WaitForPort($"{_config.ExposeApiPort.ToString()}/tcp", 30000 /*30s*/)
-                // .Command("mb", "start")
+                .WaitForHttp($"http://{Environment.GetEnvironmentVariable("DOCKER_CUSTOM_HOST_IP") ?? "localhost"}:{_config.ExposeUiPort}")
                 .WithName(_config.DependencyName);
 
             if (_config.ReuseDependencyIfExist)

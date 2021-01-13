@@ -11,10 +11,10 @@ namespace Sandbox.Controllers
     [Route("[controller]")]
     public class HttpController : ControllerBase
     {
-        private readonly ILogger<ApiTestController> _logger;
+        private readonly ILogger<HttpController> _logger;
         private readonly IHttpClientFactory _httpClientFactory;
 
-        public HttpController(ILogger<ApiTestController> logger,
+        public HttpController(ILogger<HttpController> logger,
                               IHttpClientFactory httpClientFactory)
         {
             _logger = logger;

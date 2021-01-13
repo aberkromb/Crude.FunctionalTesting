@@ -32,9 +32,9 @@ namespace Crude.FunctionalTesting.Dependency.Kafka
         {
             var builder = BuildContainer();
 
-            builder.Build().Start();
+            var container = builder.Build().Start();
 
-            return new KafkaRunningDependency(_configureServices, _config);
+            return new KafkaRunningDependency(_configureServices, container, _config);
         }
 
         private CompositeBuilder BuildContainer()

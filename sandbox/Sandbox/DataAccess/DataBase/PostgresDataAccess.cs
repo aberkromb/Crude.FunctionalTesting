@@ -15,7 +15,7 @@ namespace Sandbox.DataAccess.DataBase
 
         public Task<Strings> Get(int id, CancellationToken cancellationToken)
         {
-            return _dbContext.Strings.FirstOrDefaultAsync(str => str.Id == id,cancellationToken: cancellationToken);
+            return _dbContext.Strings.FirstOrDefaultAsync(str => str.Id == id, cancellationToken: cancellationToken);
         }
 
         public async Task<Strings> Add(Strings value, CancellationToken cancellationToken)

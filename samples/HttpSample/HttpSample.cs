@@ -42,7 +42,7 @@ namespace HttpSample
             HttpMock.AddGetMock("/search", new {value = "mock result"});
 
             // act
-            var response = await client.GetAsync("apitest/google");
+            var response = await client.GetAsync("http/google");
             var result = await response.Content.ReadAsStringAsync();
 
             // assert

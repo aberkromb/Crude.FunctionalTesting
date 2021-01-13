@@ -21,7 +21,24 @@
     </ItemGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\..\src\Crude.FunctionalTesting.TestServer\Crude.FunctionalTesting.TestServer.csproj" />
+        <ProjectReference Include="..\..\sandbox\Sandbox\Sandbox.csproj" />
         <ProjectReference Include="..\..\src\Crude.FunctionalTesting.Dependency.Kafka\Crude.FunctionalTesting.Dependency.Kafka.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="..\..\sandbox\Sandbox\appsettings.Development.json">
+        <Link>appsettings.Development.json</Link>
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <Content Include="..\..\sandbox\Sandbox\appsettings.json">
+        <Link>appsettings.json</Link>
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <Content Include="..\..\sandbox\Sandbox\bin\Debug\net5.0\Sandbox.deps.json">
+        <Link>Sandbox.deps.json</Link>
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
     </ItemGroup>
 
 </Project>

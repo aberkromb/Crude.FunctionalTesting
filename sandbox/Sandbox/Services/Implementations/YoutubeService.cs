@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace Sandbox.Services
+namespace Sandbox.Services.Implementations
 {
     internal class YoutubeService: IYoutubeService
     {

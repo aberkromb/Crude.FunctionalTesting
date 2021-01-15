@@ -41,11 +41,10 @@ namespace KafkaSample
             var httpClient = _testServer.CreateClient();
             var topicName = "TestTopic";
             var value = "Test Value";
-            Environment.SetEnvironmentVariable("ASPNETCORE_ENVIRONMENT", "Development");
 
             // act
+            await Kafka.Produce(topicName, new { Text = "test text" });
             var x = await httpClient.PostAsync($"kafka/produce?topic={topicName}&value={value}", null);
-            // await Kafka.Produce("test", new { Text = "test text" });
             var messages = Kafka.Consume(topicName);
 
 

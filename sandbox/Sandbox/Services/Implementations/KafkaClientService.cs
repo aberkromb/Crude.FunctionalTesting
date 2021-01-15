@@ -18,8 +18,9 @@ namespace Sandbox.Services.Implementations
         private readonly ProducerBuilder<string, string> _producerBuilder;
 
 
-        public KafkaClientService(IOptions<ClientConfig> clientConfig)
+        public KafkaClientService(IOptions<ClientConfig> clientConfig, ILogger<KafkaClientService> logger)
         {
+            _logger = logger;
             _clientConfig = clientConfig.Value;
 
             _producerBuilder = new ProducerBuilder<string, string>(_clientConfig);
@@ -57,7 +58,7 @@ namespace Sandbox.Services.Implementations
 
         public async Task Produce(string topic, object message, CancellationToken cancellationToken)
         {
-            await CreateTopicMaybe(topic, 1, 1, _clientConfig);
+            // await CreateTopicMaybe(topic, 1, 1, _clientConfig);
 
             using var producer = _producerBuilder.Build();
 

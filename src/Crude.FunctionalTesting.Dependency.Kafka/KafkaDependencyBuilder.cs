@@ -37,21 +37,21 @@ namespace Crude.FunctionalTesting.Dependency.Kafka
             return new KafkaRunningDependency(_configureServices, container, _config);
         }
 
-        private CompositeBuilder BuildContainer()
+        private ContainerBuilder BuildContainer()
         {
-            // var builder = new Builder()
-            //     .UseContainer()
-            //     .UseImage(_config.Image)
-            //     .WithEnvironment(_config.EnvironmentVariables
-            //         .Select(s => $"{s.Key}={s.Value}")
-            //         .ToArray())
-            //     .ExposePort((int) _config.ExposePort, (int) _config.ExposePort)
-            //     // .WaitForPort($"{_config.ExposePort.ToString()}/tcp", 30000 /*30s*/)
-            //     .UseNetwork("kafka-network")
-            //     .WithName(_config.DependencyName);
-            //
-            // if (_config.ReuseDependencyIfExist)
-            //     builder.ReuseIfExists();
+            var builder = new Builder()
+                          .UseContainer()
+                          .UseImage(_config.Image)
+                          .WithEnvironment(_config.EnvironmentVariables
+                                                  .Select(s => $"{s.Key}={s.Value}")
+                                                  .ToArray())
+                          .ExposePort((int) _config.ExposePort, (int) _config.ExposePort)
+                          .ExposePort((int) _config.ExposePort2, (int) _config.ExposePort2)
+                          // .WaitForPort($"{_config.ExposePort.ToString()}/tcp", 30000 /*30s*/)
+                          .WithName(_config.DependencyName);
+
+            if (_config.ReuseDependencyIfExist)
+                builder.ReuseIfExists();
             //
             // var zookeeperBuilder = new Builder()
             //     .UseContainer()
@@ -61,14 +61,16 @@ namespace Crude.FunctionalTesting.Dependency.Kafka
             //     .WithName("zookeeper-functional-tests")
             //     .UseNetwork("kafka-network")
             //     .ReuseIfExists();
-            
-            var file = Path.Combine(Directory.GetCurrentDirectory(), (TemplateString) "docker-compose.yml");
 
-            var builder = new Builder()
-                .UseContainer()
-                .UseCompose()
-                .FromFile(file)
-                .RemoveOrphans();
+            // var file = Path.Combine(Directory.GetCurrentDirectory(), (TemplateString) "docker-compose.yml");
+            //
+            // var fileContent = File.ReadAllText(file);
+            //
+            // var builder = new Builder()
+            //     .UseContainer()
+            //     .UseCompose()
+            //     .FromFile(file)
+            //     .RemoveOrphans();
 
             return builder;
         }

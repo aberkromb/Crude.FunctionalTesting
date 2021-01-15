@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Sandbox.DataAccess;
 using Sandbox.DataAccess.DataBase;
@@ -24,6 +25,7 @@ namespace Sandbox
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddLogging(builder => builder.ClearProviders().AddConsole());
             services.AddControllers().AddNewtonsoftJson();
 
             services.AddHealthChecks().AddDbContextCheck<PostgresDbContext>();

@@ -21,8 +21,6 @@ namespace Crude.FunctionalTesting.Dependency.Kafka
 
         static async Task CreateTopicMaybe(string name, int numPartitions, short replicationFactor, ClientConfig cloudConfig)
         {
-            Console.WriteLine(cloudConfig.BootstrapServers);
-            
             using (var adminClient = new AdminClientBuilder(cloudConfig).Build())
             {
                 try

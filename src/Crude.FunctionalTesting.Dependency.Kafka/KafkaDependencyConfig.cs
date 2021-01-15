@@ -17,20 +17,16 @@ namespace Crude.FunctionalTesting.Dependency.Kafka
         public IReadOnlyCollection<(string Key, string Value)> EnvironmentVariables { get; set; } =
             new List<(string Key, string Value)>
             {
-                ("KAFKA_BROKER_ID", 1.ToString()),
-                ("KAFKA_LISTENER_SECURITY_PROTOCOL_MAP", "PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT"),
-                ("KAFKA_INTER_BROKER_LISTENER_NAME", "PLAINTEXT"),
-                ("KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR", 1.ToString()),
-                ("KAFKA_AUTO_CREATE_TOPICS_ENABLE", "true"),
-                ("KAFKA_HEAP_OPTS", "-Xmx512M"),
-                ("KAFKA_ADVERTISED_LISTENERS", $"PLAINTEXT://kafka:29092,PLAINTEXT_HOST://{GetAdvertisedListenersPlainTextHost()}:9092"),
-                ("KAFKA_ZOOKEEPER_CONNECT", $"localhost:2181")
+                ("KAFKA_ADVERTISED_LISTENERS", $"INTERNAL://:29092,EXTERNAL://{GetAdvertisedListenerHost()}:9092"),
+                ("KAFKA_LISTENERS", "INTERNAL://:29092,EXTERNAL://:9092"),
+                ("KAFKA_LISTENER_SECURITY_PROTOCOL_MAP", "INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT"),
+                ("KAFKA_INTER_BROKER_LISTENER_NAME", "INTERNAL"),
             };
 
-        private static string GetAdvertisedListenersPlainTextHost()
+        private static string GetAdvertisedListenerHost()
         {
-            var kafkaAdvertisedListeners = Environment.GetEnvironmentVariable("KAFKA_ADVERTISED_LISTENERS_HOST");
-            
+            var kafkaAdvertisedListeners = Environment.GetEnvironmentVariable("DOCKER_CUSTOM_HOST_IP");
+
             return kafkaAdvertisedListeners switch
             {
                 null => "localhost",

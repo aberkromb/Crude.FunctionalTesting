@@ -2,7 +2,7 @@
 # Пример для windows
 
 $base_image_name = "ft-net5-docker:1.0" 
-$test_image_name = "ft-test:1.0" 
+$test_image_name = "ft-test:2.0" 
 
 cls
 echo "Получаем текущий docker host."

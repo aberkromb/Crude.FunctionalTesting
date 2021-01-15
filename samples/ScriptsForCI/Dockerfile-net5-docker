@@ -59,12 +59,12 @@
  RUN mkdir /certs /certs/client && chmod 1777 /certs /certs/client
  # (doing both /certs and /certs/client so that if Docker does a "copy-up" into a volume defined on /certs/client, it will "do the right thing" by default in a way that still works for rootless users)
 
-# ENV COMPOSE_VERSION 1.26.2
-#
-# RUN apk add --no-cache py3-pip python3
-# RUN apk add --no-cache --virtual build-dependencies python3-dev libffi-dev openssl-dev gcc libc-dev make \
-#   && pip3 install "docker-compose${COMPOSE_VERSION:+==}${COMPOSE_VERSION}" \
-#   && apk del build-dependencies
+ENV COMPOSE_VERSION 1.26.2
+
+RUN apk add --no-cache py3-pip python3
+RUN apk add --no-cache --virtual build-dependencies python3-dev libffi-dev openssl-dev gcc libc-dev make \
+  && pip3 install "docker-compose${COMPOSE_VERSION:+==}${COMPOSE_VERSION}" \
+  && apk del build-dependencies
 
  ENTRYPOINT ["docker-entrypoint.sh"]
  CMD ["sh"]

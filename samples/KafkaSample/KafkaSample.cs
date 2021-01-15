@@ -1,9 +1,7 @@
 using System;
-using System.Linq;
 using System.Threading.Tasks;
 using Confluent.Kafka;
 using Crude.FunctionalTesting.Core;
-using Crude.FunctionalTesting.Core.Dependencies;
 using Crude.FunctionalTesting.Dependency.Kafka;
 using Crude.FunctionalTesting.TestServer;
 using FluentAssertions;
@@ -29,7 +27,8 @@ namespace KafkaSample
                                                                             {
                                                                                 var kafkaContext = (KafkaRunningDependencyContext) context;
                                                                                 context.Services.PostConfigure<ClientConfig>(options =>
-                                                                                    options.BootstrapServers = kafkaContext.GetClientConfig().BootstrapServers);
+                                                                                    options.BootstrapServers = kafkaContext.GetClientConfig()
+                                                                                        .BootstrapServers);
                                                                             }))
                                                         );
         }
@@ -42,10 +41,10 @@ namespace KafkaSample
             var httpClient = _testServer.CreateClient();
             var topicName = "TestTopic";
             var value = "Test Value";
-            
+
             // act
-            await Kafka.Produce("test", new { Text = "test text" });
-            var x=          await httpClient.PostAsync($"kafka/produce?topic={topicName}&value={value}", null);
+            await Kafka.Produce(topicName, new { Text = "test text" });
+            var x = await httpClient.PostAsync($"kafka/produce?topic={topicName}&value={value}", null);
             var messages = Kafka.Consume(topicName);
 
 

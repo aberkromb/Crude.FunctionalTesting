@@ -27,7 +27,7 @@ namespace Crude.FunctionalTesting.Dependency.Kafka
                 {
                     await adminClient.CreateTopicsAsync(new List<TopicSpecification>
                     {
-                        new TopicSpecification {Name = name, NumPartitions = numPartitions, ReplicationFactor = replicationFactor}
+                        new TopicSpecification() {Name = name, NumPartitions = numPartitions, ReplicationFactor = replicationFactor}
                     });
                 }
                 catch (CreateTopicsException e)

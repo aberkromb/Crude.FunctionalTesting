@@ -11,12 +11,12 @@ namespace Crude.FunctionalTesting.Dependency.Kafka
     public class KafkaRunningDependency : IRunningDependency
     {
         private readonly Action<IRunningDependencyContext> _configureServices;
-        private readonly ICompositeService _compositeService;
+        private readonly IContainerService _compositeService;
         private readonly KafkaDependencyConfig _config;
         private KafkaRunningDependencyContext _context;
 
         public KafkaRunningDependency(Action<IRunningDependencyContext> configureServices,
-                                      ICompositeService compositeService,
+                                      IContainerService compositeService,
                                       KafkaDependencyConfig config)
         {
             _configureServices = configureServices;

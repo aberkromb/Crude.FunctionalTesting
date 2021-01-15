@@ -36,7 +36,7 @@ namespace Crude.FunctionalTesting.Dependency.Postgres
         public async Task<IDependency> AfterDependencyStart(CancellationToken cancellationToken)
         {
             var connectionString = _context.ConnectionString;
-            await Task.Delay(20000);
+            await Task.Delay(20000); // TODO fix this 
 
             await using var connection = new NpgsqlConnection(connectionString);
             await connection.OpenAsync(cancellationToken);

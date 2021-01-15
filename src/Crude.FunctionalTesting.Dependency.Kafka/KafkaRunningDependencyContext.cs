@@ -11,7 +11,7 @@ namespace Crude.FunctionalTesting.Dependency.Kafka
 {
     public class KafkaRunningDependencyContext : IRunningDependencyContext
     {
-        private readonly ICompositeService _container;
+        private readonly IContainerService _container;
         private readonly KafkaDependencyConfig _config;
 
         public IConfiguration Configuration { get; }
@@ -20,7 +20,7 @@ namespace Crude.FunctionalTesting.Dependency.Kafka
 
         public KafkaRunningDependencyContext(IConfiguration configuration,
                                              IServiceCollection services,
-                                             ICompositeService container,
+                                             IContainerService container,
                                              KafkaDependencyConfig dependencyConfig)
         {
             Configuration = configuration;
@@ -36,8 +36,8 @@ namespace Crude.FunctionalTesting.Dependency.Kafka
 
         private string GetDependencyAddress() =>
             Environment.GetEnvironmentVariable("DOCKER_CUSTOM_HOST_IP") is null
-                ? _container.Containers
-                            .First(c => c.Image.Name.Contains("cp-kafka", StringComparison.InvariantCultureIgnoreCase))
+                ? _container/*.Containers
+                            .First(c => c.Image.Name.Contains("cp-kafka", StringComparison.InvariantCultureIgnoreCase))*/
                             .ToHostExposedEndpoint($"{_config.ExposePort}/tcp").Address.ToString()
                 : Environment.GetEnvironmentVariable("DOCKER_CUSTOM_HOST_IP");
     }

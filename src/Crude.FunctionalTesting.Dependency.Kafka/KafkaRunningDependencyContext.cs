@@ -29,7 +29,7 @@ namespace Crude.FunctionalTesting.Dependency.Kafka
             _config = dependencyConfig;
         }
 
-        public ClientConfig GetClientConfig() => new()
+        public ClientConfig GetClientConfig() => new ClientConfig()
         {
             BootstrapServers = $"{GetDependencyAddress()}:{_config.ExposePort}"
         };

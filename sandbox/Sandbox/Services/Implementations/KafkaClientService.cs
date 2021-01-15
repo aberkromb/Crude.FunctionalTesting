@@ -18,8 +18,9 @@ namespace Sandbox.Services.Implementations
         private readonly ProducerBuilder<string, string> _producerBuilder;
 
 
-        public KafkaClientService(IOptions<ClientConfig> clientConfig)
+        public KafkaClientService(IOptions<ClientConfig> clientConfig, ILogger<KafkaClientService> logger)
         {
+            _logger = logger;
             _clientConfig = clientConfig.Value;
 
             _producerBuilder = new ProducerBuilder<string, string>(_clientConfig);

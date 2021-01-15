@@ -57,7 +57,7 @@ namespace Crude.FunctionalTesting.Dependency.Postgres
                                                   })
                                                   .ToArray())
                           .ExposePort((int) _config.ExposePort, (int) _config.ExposePort)
-                          .WaitForPort($"{_config.ExposePort.ToString()}/tcp", 30000 /*30s*/, Environment.GetEnvironmentVariable("DOCKER_CUSTOM_HOST_IP") ?? "localhost")
+                          .WaitForPort($"{_config.ExposePort.ToString()}/tcp", 30000 /*30s*/, Environment.GetEnvironmentVariable("DOCKER_CUSTOM_HOST_IP") ?? "127.0.0.1")
                           .WithName(_config.DependencyName);
 
             if (_config.ReuseDependencyIfExist)

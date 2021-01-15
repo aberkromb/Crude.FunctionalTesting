@@ -76,7 +76,7 @@ namespace Crude.FunctionalTesting.Dependency.Kafka
                 do
                 {
                     var cr = consumer.Consume(consumeTimeout ?? TimeSpan.FromMilliseconds(5000));
-                    if (cr is not null)
+                    if (cr != null)
                     {
                         consumer.Commit(cr);
                         result.Add(JObject.Parse(cr.Message.Value));

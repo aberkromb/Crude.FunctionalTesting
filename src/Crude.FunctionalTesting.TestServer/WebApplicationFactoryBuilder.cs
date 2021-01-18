@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using Crude.FunctionalTesting.Core;
 using Crude.FunctionalTesting.Core.Dependencies;
 using Microsoft.AspNetCore.Hosting;
@@ -6,12 +8,18 @@ using Microsoft.Extensions.Hosting;
 
 namespace Crude.FunctionalTesting.TestServer
 {
-    public class WebApplicationFactoryBuilder<TStartup>
-        : WebApplicationFactory<TStartup> where TStartup : class
+    public class WebApplicationFactoryBuilder<TStartup> : WebApplicationFactory<TStartup> where TStartup : class
     {
         private DependenciesBuilder _dependenciesBuilder;
         private RunningDependencies _runningDependencies;
+        private List<Action<IWebHostBuilder>> _webHostBuilderConfigurator = new List<Action<IWebHostBuilder>>();
 
+        public WebApplicationFactoryBuilder<TStartup> AddWebHostBuilderConfigurator(Action<IWebHostBuilder> configurator)
+        {
+            _webHostBuilderConfigurator.Add(configurator);
+            return this;
+        }
+        
         public WebApplicationFactoryBuilder<TStartup> AddDependenciesBuilder(
             DependenciesBuilder dependenciesBuilder)
         {
@@ -20,11 +28,6 @@ namespace Crude.FunctionalTesting.TestServer
         }
 
         public IDependencyManager DependencyManager { get; private set; }
-
-        protected override IWebHostBuilder CreateWebHostBuilder()
-        {
-            return base.CreateWebHostBuilder();
-        }
 
         protected override IHost CreateHost(IHostBuilder builder)
         {
@@ -39,6 +42,8 @@ namespace Crude.FunctionalTesting.TestServer
             {
                 DependencyManager = _runningDependencies.ConfigureServices(context.Configuration, services);
             });
+
+            base.ConfigureWebHost(builder);
         }
 
         protected override void Dispose(bool disposing)

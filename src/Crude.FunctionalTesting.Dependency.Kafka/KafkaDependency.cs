@@ -65,7 +65,7 @@ namespace Crude.FunctionalTesting.Dependency.Kafka
             consumerConfig.GroupId = "dotnet-example-group-1";
             consumerConfig.AutoOffsetReset = AutoOffsetReset.Earliest;
             consumerConfig.EnableAutoCommit = false;
-
+            consumerConfig.AllowAutoCreateTopics = true;
             var result = new List<JObject>();
 
             using var consumer = new ConsumerBuilder<string, string>(consumerConfig).Build();

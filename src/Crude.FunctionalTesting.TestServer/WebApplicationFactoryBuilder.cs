@@ -38,6 +38,11 @@ namespace Crude.FunctionalTesting.TestServer
 
         protected override void ConfigureWebHost(IWebHostBuilder builder)
         {
+            foreach (var action in _webHostBuilderConfigurator)
+            {
+                action(builder);
+            }
+            
             builder.ConfigureServices((context, services) =>
             {
                 DependencyManager = _runningDependencies.ConfigureServices(context.Configuration, services);

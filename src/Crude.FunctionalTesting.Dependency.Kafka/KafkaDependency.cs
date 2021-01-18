@@ -62,6 +62,7 @@ namespace Crude.FunctionalTesting.Dependency.Kafka
         public IEnumerable<JObject> Consume(string topic, TimeSpan? consumeTimeout = null)
         {
             var consumerConfig = new ConsumerConfig(_context.GetClientConfig());
+            consumerConfig.GroupId = "functional-tests-group";
             consumerConfig.AutoOffsetReset = AutoOffsetReset.Earliest;
             consumerConfig.EnableAutoCommit = false;
             consumerConfig.AllowAutoCreateTopics = true;

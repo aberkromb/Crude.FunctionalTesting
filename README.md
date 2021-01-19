@@ -1,8 +1,8 @@
 # Crude.FunctionalTesting
 
-## Sandbox
+## sandbox
 Папка с проектом WebAPI для воспроизведения как это идейно должно работать в проде
 
-## tests/FunctionalTests
+## samples
 Примеры тестов как это должно выглядеть при написании собственных тестов
 

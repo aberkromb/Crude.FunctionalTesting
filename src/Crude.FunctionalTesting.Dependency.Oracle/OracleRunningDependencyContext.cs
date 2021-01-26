@@ -5,11 +5,11 @@ using Ductus.FluentDocker.Services.Extensions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Crude.FunctionalTesting.Dependency.Postgres
+namespace Crude.FunctionalTesting.Dependency.Oracle
 {
-    public class PostgresRunningDependencyContext : IRunningDependencyContext
+    public class OracleRunningDependencyContext : IRunningDependencyContext
     {
-        private readonly PostgresDependencyConfig _config;
+        private readonly OracleDependencyConfig _config;
         private readonly IContainerService _container;
 
         public IConfiguration Configuration { get; }
@@ -18,7 +18,7 @@ namespace Crude.FunctionalTesting.Dependency.Postgres
 
         public IDependencyConfig DependencyConfig => _config;
 
-        public PostgresRunningDependencyContext(PostgresDependencyConfig config,
+        public OracleRunningDependencyContext(OracleDependencyConfig config,
                                                 IContainerService container,
                                                 IConfiguration configuration,
                                                 IServiceCollection services)
@@ -33,9 +33,10 @@ namespace Crude.FunctionalTesting.Dependency.Postgres
         ///     Отдает строку подключения к БД
         /// </summary>
         public string ConnectionString =>
-            $"Host={GetDependencyAddress()}; Port={_config.ExposePort}; Database={_config.Database}; Username={_config.UserName}; Password={_config.Password}";
+            $"Data Source={GetDependencyAddress()}:{_config.ExposePort}/ORCLCDB; User ID=FUNCTIONALTESTING; Password={_config.Password}";
+//User ID=myUsername;Password=myPassword;Host=ora;Pooling=true;Min Pool Size=0;Max Pool Size=100;Connection Lifetime=0;
 
-        private string GetDependencyAddress() =>
+        public string GetDependencyAddress() =>
             Environment.GetEnvironmentVariable("DOCKER_CUSTOM_HOST_IP") is null
                 ? _container.ToHostExposedEndpoint($"{_config.ExposePort}/tcp").Address.ToString()
                 : Environment.GetEnvironmentVariable("DOCKER_CUSTOM_HOST_IP");

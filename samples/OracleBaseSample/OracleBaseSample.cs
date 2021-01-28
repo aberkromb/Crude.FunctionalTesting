@@ -10,13 +10,13 @@ using FluentAssertions;
 
 namespace OracleBaseSample
 {
-    public class UnitTest1
+    public class OracleBaseSample
     {
         private readonly IDependencyManager _dependencyManager;
 
         private OracleDependency Oracle => _dependencyManager.GetDependency<OracleDependency>();
 
-        public UnitTest1()
+        public OracleBaseSample()
         {
             _dependencyManager = new DependenciesBuilder()
                 .AddDependency(new OracleDependencyBuilder()

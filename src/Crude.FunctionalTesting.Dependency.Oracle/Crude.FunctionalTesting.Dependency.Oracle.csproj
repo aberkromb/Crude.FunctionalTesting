@@ -3,10 +3,11 @@
     <PropertyGroup>
         <TargetFrameworks>net5.0;netcoreapp3.1</TargetFrameworks>
         <IsPackable>true</IsPackable>
-        <Version>0.0.1</Version>
+        <Version>0.0.2</Version>
     </PropertyGroup>
     
     <ItemGroup>
+        <PackageReference Include="Respawn" Version="4.0.0" />
         <PackageReference Include="Dapper.Oracle" Version="2.0.1" />
         <PackageReference Include="Oracle.ManagedDataAccess.Core" Version="2.19.101" />
     </ItemGroup>

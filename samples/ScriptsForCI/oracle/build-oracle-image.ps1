@@ -27,3 +27,4 @@ docker ps -f "name=my-oracle"
 docker commit --message "container fortests" <container id> my/oracle-19.3.0-my-oracle   
 
 
+# еще можно улучшить собранный образ воспользовавшись статьей - https://habr.com/ru/post/480106/

@@ -12,7 +12,7 @@ git clone https://github.com/oracle/docker-images.git
 
 # Запускаем сборку образа
 
-.\docker-images\OracleDatabase\SingleInstance\dockerfiles\buildContainerImage.sh
+.\docker-images\OracleDatabase\SingleInstance\dockerfiles\buildContainerImage.sh -v 19.3.0 -e
 
 # Запускаем собранный образ
 docker run --rm --name my-oracle -p 1521:1521 -p 5500:5500 -e ORACLE_PWD=123 --shm-size="1g" oracle/database:19.3.0-xe

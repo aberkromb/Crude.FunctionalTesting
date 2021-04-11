@@ -38,5 +38,9 @@ namespace Crude.FunctionalTesting.Dependency.Postgres
             var connString = _context.ConnectionString;
             return new NpgsqlConnection(connString);
         }
+
+        public void Dispose()
+        {
+        }
     }
 }

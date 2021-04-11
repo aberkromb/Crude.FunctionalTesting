@@ -42,5 +42,9 @@ namespace Crude.FunctionalTesting.Dependency.Oracle
             
             return connection;
         }
+
+        public void Dispose()
+        {
+        }
     }
 }

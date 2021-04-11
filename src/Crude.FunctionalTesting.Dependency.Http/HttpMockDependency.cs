@@ -40,5 +40,9 @@ namespace Crude.FunctionalTesting.Dependency.Http
 
             return stub;
         }
+
+        public void Dispose()
+        {
+        }
     }
 }

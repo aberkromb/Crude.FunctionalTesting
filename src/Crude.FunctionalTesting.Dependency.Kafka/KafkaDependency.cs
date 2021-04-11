@@ -94,5 +94,9 @@ namespace Crude.FunctionalTesting.Dependency.Kafka
 
             return result;
         }
+
+        public void Dispose()
+        {
+        }
     }
 }

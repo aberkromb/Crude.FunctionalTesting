@@ -10,7 +10,7 @@ using Newtonsoft.Json.Linq;
 using Sandbox;
 using Xunit;
 
-namespace RabbitMqSample
+namespace KafkaSample
 {
     public class KafkaSample : IClassFixture<WebApplicationFactoryBuilder<Startup>>
     {

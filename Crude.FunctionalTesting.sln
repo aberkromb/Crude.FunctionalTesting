@@ -56,6 +56,12 @@ ProjectSection(SolutionItems) = preProject
 	samples\ScriptsForCI\oracle\build-oracle-image.ps1 = samples\ScriptsForCI\oracle\build-oracle-image.ps1
 EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crude.FunctionalTesting.Dependency.RabbitMQ", "src\Crude.FunctionalTesting.Dependency.RabbitMQ\Crude.FunctionalTesting.Dependency.RabbitMQ.csproj", "{ED979D02-489E-47EB-B615-BE38C6DF8551}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RabbitMqSample", "RabbitMqSample", "{27BD1906-A888-4C75-9C74-770FB88E1504}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMqSample", "samples\RabbitMqSample\RabbitMqSample.csproj", "{7BD29431-308F-4772-85AD-1AD0C6173222}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -110,6 +116,14 @@ Global
 		{E543E81D-411F-4EB5-9224-F8A6BBD69AC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E543E81D-411F-4EB5-9224-F8A6BBD69AC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E543E81D-411F-4EB5-9224-F8A6BBD69AC6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED979D02-489E-47EB-B615-BE38C6DF8551}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED979D02-489E-47EB-B615-BE38C6DF8551}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED979D02-489E-47EB-B615-BE38C6DF8551}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED979D02-489E-47EB-B615-BE38C6DF8551}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7BD29431-308F-4772-85AD-1AD0C6173222}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BD29431-308F-4772-85AD-1AD0C6173222}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BD29431-308F-4772-85AD-1AD0C6173222}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BD29431-308F-4772-85AD-1AD0C6173222}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{1AB14798-8D72-4231-9A9B-F186195A74F5} = {7D2F9CF1-3B1B-4324-8559-C8BF541D5ADF}
@@ -131,5 +145,8 @@ Global
 		{E543E81D-411F-4EB5-9224-F8A6BBD69AC6} = {A48E4D55-6EFC-4342-8F25-3CF0A10DEED5}
 		{19F536E0-7204-46E4-88D2-1863B9B9A098} = {A48E4D55-6EFC-4342-8F25-3CF0A10DEED5}
 		{20D9CCF1-5288-4A06-84F0-AB0A4D057E78} = {68C12EFF-D346-4D45-9DB4-8A0CA50070E7}
+		{ED979D02-489E-47EB-B615-BE38C6DF8551} = {7D2F9CF1-3B1B-4324-8559-C8BF541D5ADF}
+		{27BD1906-A888-4C75-9C74-770FB88E1504} = {B6149463-6F6F-4D9B-B139-CE962B7E4E27}
+		{7BD29431-308F-4772-85AD-1AD0C6173222} = {27BD1906-A888-4C75-9C74-770FB88E1504}
 	EndGlobalSection
 EndGlobal

@@ -16,18 +16,28 @@ namespace Crude.FunctionalTesting.Dependency.Http
             _context = context;
             _client = mountebankClient;
         }
-        
+
         public HttpStub AddGetMock(string path, object response)
         {
+            return CreateStub(Method.Get, path, response);
+        }
+
+        public HttpStub AddPostMock(string path, object response)
+        {
+            return CreateStub(Method.Post, path, response);
+        }
+
+        private HttpStub CreateStub(Method method, string path, object response)
+        {
             var (_, port) = _context.GetHostAndPort();
-            var imposter = _client.CreateHttpImposter(port, $"{path}-mock-", recordRequests: true); 
-            
+            var imposter = _client.CreateHttpImposter(port, $"{path}-mock", recordRequests: true);
+
             var stub = imposter.AddStub()
-                .OnPathAndMethodEqual(path, Method.Get)
+                .OnPathAndMethodEqual(path, method)
                 .ReturnsJson(HttpStatusCode.OK, response);
-            
+
             _client.Submit(imposter);
-            
+
             return stub;
         }
     }

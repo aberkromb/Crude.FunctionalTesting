@@ -43,7 +43,7 @@ namespace RabbitMqSample
             // act
             RabbitMq.Publish(queueParameters, exchangeParameters, publishParameters);
             await Task.Delay(100);
-            var messages = RabbitMq.Consume(exchangeParameters.Name, queueParameters.Name);
+            var messages = await RabbitMq.Consume(queueParameters.Name);
 
             // assert
             messages.Should().Contain(jObject => jObject["Text"].Value<string>() == "test message");

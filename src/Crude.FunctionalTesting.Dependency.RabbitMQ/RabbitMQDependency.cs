@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using Crude.FunctionalTesting.Core.Dependencies;
+using Crude.FunctionalTesting.Dependency.RabbitMQ.Internal;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RabbitMQ.Client;
-using RabbitMQ.Client.Events;
 
 namespace Crude.FunctionalTesting.Dependency.RabbitMQ
 {
@@ -14,9 +16,7 @@ namespace Crude.FunctionalTesting.Dependency.RabbitMQ
         private readonly RabbitMqRunningDependencyContext _context;
         private readonly IConnection _connection;
         private readonly IModel _channel;
-
-        private IDictionary<(string, string), List<JObject>> ConsumedMessages =
-            new Dictionary<(string, string), List<JObject>>();
+        private RabbitMqApiClient _apiClient;
 
         public RabbitMqDependency(RabbitMqRunningDependencyContext context)
         {
@@ -30,11 +30,24 @@ namespace Crude.FunctionalTesting.Dependency.RabbitMQ
             };
             _connection = factory.CreateConnection();
             _channel = _connection.CreateModel();
+
+            _apiClient = new RabbitMqApiClient(context);
         }
 
-        public IEnumerable<JObject> Consume(string exchangeName, string queueName)
+        public async Task<List<JObject>> Consume(string queueName)
         {
-            return ConsumedMessages[(exchangeName, queueName)];
+            var messages = await _apiClient.GetMessagesAsync(new GetMessagesParameters { QueueName = queueName });
+
+            return messages.Select(m => JObject.Parse(m.Payload)).ToList();
+        }
+
+        public async Task<IReadOnlyCollection<T>> Consume<T>(string queueName)
+        {
+            var jObjectMessages = await Consume(queueName);
+
+            var result = jObjectMessages.Select(msg => msg.ToObject<T>()).ToList();
+
+            return result;
         }
 
         public void Publish(
@@ -47,34 +60,12 @@ namespace Crude.FunctionalTesting.Dependency.RabbitMQ
             var messageString = MessageToString(parameters.Message);
 
             var body = Encoding.UTF8.GetBytes(messageString);
-            
-            CreateConsumer(exchangeParameters.Name, queueParameters.Name);
 
             _channel.BasicPublish(
                 exchange: exchangeParameters.Name,
                 routingKey: parameters.RoutingKey,
                 basicProperties: null,
                 body: body);
-        }
-
-        private void CreateConsumer(string exchangeName, string queueName)
-        {
-            var consumer = new EventingBasicConsumer(_channel);
-            
-            consumer.Received += (model, ea) =>
-            {
-                var body = ea.Body.ToArray();
-                var message = JObject.Parse(Encoding.UTF8.GetString(body));
-                
-                if (ConsumedMessages.TryGetValue((exchangeName, queueName), out var messages))
-                    messages.Add(message);
-                else
-                    ConsumedMessages[(exchangeName, queueName)] = new List<JObject> { message };
-            };
-
-            _channel.BasicConsume(queue: queueName,
-                autoAck: true,
-                consumer: consumer);
         }
 
         private void SetupTopology(QueueParameters queueParameters,

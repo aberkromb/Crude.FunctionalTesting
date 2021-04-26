@@ -28,7 +28,7 @@ namespace Crude.FunctionalTesting.Dependency.RabbitMQ
             _config = dependencyConfig;
         }
 
-        private string GetDependencyAddress() =>
+        public string GetDependencyAddress() =>
             Environment.GetEnvironmentVariable("DOCKER_CUSTOM_HOST_IP") is null
                 ? _container.ToHostExposedEndpoint($"{_config.ExposePort}/tcp").Address.ToString()
                 : Environment.GetEnvironmentVariable("DOCKER_CUSTOM_HOST_IP");
